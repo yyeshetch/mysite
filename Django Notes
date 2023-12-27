@@ -1,0 +1,93 @@
+Installation Steps
+	sudo apt-get update
+	sudo snap install curl
+	curl -O https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh
+	bash ~/Downloads/Anaconda3-2023.09-0-Linux-x86_64.sh
+	source /home/harsha/anaconda3/bin/activate
+	conda init
+	conda install -c anaconda django
+
+
+To know version of django
+	python -m django --version
+
+Creating a project
+django-admin startproject mysite
+
+Running a light weight server, not for production use
+python manage.py runserver
+
+Changing port
+python manage.py runserver 8080
+
+Changing IP
+python manage.py runserver 0.0.0.0:8080
+
+Creating an app
+"python manage.py startapp polls", where polls is the app
+
+Create a view and create a urls.py (UrlConf) for this app and map a url pattern to view
+
+Add the app's UrlConf to main project site using "include" and tag it to a pattern
+	- include has to be used to include other URL patterns except admin.site.urls
+
+Configuring databases
+	- mysite/settings.py, edit DATABASES
+
+To Apply migrations
+	- python manage.py migrate
+
+Inform django about the new app by adding it int mysite/settings.py
+	
+
+After creating/modifying a model run makemigrations (doesn't update db, but prints to screen)
+	python manage.py makemigrations polls
+
+To look at a sql migration, use sqlmigrate
+	python manage.py sqlmigrate polls 0001
+
+To update db about the models, run migrate
+	python manage.py migrate
+
+django_migrations -- keeps track of migrations which are applied
+
+model_name.objects.all() -- returns all of the objects from a model
+
+Add __str__(self) and return identifiable information about the record
+
+
+manage.py commands
+	
+	1. Sqlmigrate -- takes migration names and returns their SQL -- python manage.py sqlmigrate polls 0001
+	2. check -- python manage.py check
+	3. shell
+	4. createsuperuser -- python manage.py createsuperuser
+	5. runserver
+
+Auto
+	1. Increments
+	2. _id
+	3. Primary Key
+	4. for table app name is concatenated with model name
+	4. __ for field related values
+	5. _set is used in concatenation with table name for foreign key relations
+	* Only the primary table rows after creating, save should be executed. For relational tables rows are updated without running save()
+
+Django admin details set in local system for mysite
+	admin
+	admin@example.com
+	Round@123
+
+For a model to appear in admin page, it has to be registered in corresponding app's admin.py
+
+Pattern name for a url should match with corresponding view's parameter name
+
+html files should be placed under "templates" directory inside an app
+
+templates directory should contain another folder with the name same as app and this should contain html files
+
+Model's manager handles get() requests
+
+
+Status
+https://docs.djangoproject.com/en/5.0/intro/tutorial03/ --> Use the template system
