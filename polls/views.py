@@ -26,6 +26,25 @@ def results(request, question_id):
 	question = get_object_or_404(Question, pk=question_id)
 	return render(request, "polls/results.html", {"question": question})
 
+class IndexView(generic.ListView):
+    template_name = "polls/index.html"
+    # Model name by default for this listview will be question_list, to alter pass context_object_name
+    context_object_name = "latest_question_list"
+
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Question.objects.order_by("-pub_date")[:5]
+
+class DetailView(generic.DetailView):
+	# A generic view should be pointed to model
+	# by default it uses format app_name/model_name_detail.html, to alter pass template_name
+    model = Question
+    template_name = "polls/detail.html"
+
+class ResultsView(generic.DetailView):
+    model = Question
+    template_name = "polls/results.html"
+
 # Processing View for "detail" output view
 def vote(request, question_id):
 	question = get_object_or_404(Question, pk=question_id)
