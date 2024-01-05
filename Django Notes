@@ -88,6 +88,22 @@ templates directory should contain another folder with the name same as app and 
 
 Model's manager handles get() requests
 
+get_object_or_404
+
+get_list_or_404()
+
+render
+
+context manager
+
+removing hard coding of urls using {% url %}
+
+namespacing - used to refer to specific urls of a specific app when you have multiple apps in a django project
+
+when using a post request use csrf token
+HttpResponseRedirect
+reverse()
+
 
 Status
 https://docs.djangoproject.com/en/5.0/intro/tutorial03/ --> Use the template system
