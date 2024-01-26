@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.views import generic
 
 from .models import Choice, Question
+from django.utils import timezone
 
 def index(request):
 	latest_question_list = Question.objects.order_by("-pub_date")[:5]
@@ -33,13 +34,15 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Question.objects.order_by("-pub_date")[:5]
+        return Question.objects.filter(pub_date__lte=timezone.now()).order_by("-pub_date")[:5]
 
 class DetailView(generic.DetailView):
 	# A generic view should be pointed to model
 	# by default it uses format app_name/model_name_detail.html, to alter pass template_name
     model = Question
     template_name = "polls/detail.html"
+    def get_queryset(self):
+    	return Question.objects.filter(pub_date__lte=timezone.now())
 
 class ResultsView(generic.DetailView):
     model = Question

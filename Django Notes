@@ -11,6 +11,9 @@ Installation Steps
 To know version of django
 	python -m django --version
 
+To update django version
+	pip install --upgrade django
+
 Creating a project
 django-admin startproject mysite
 
@@ -104,6 +107,20 @@ when using a post request use csrf token
 HttpResponseRedirect
 reverse()
 
+Tests
+1. Should be written in tests.py inside corresponding app
+2. A test case should start with "test"
+3. Should be run using "python manage.py test polls"
+4. testing creates its own database and is destroyed on test finish
 
-Status
-https://docs.djangoproject.com/en/5.0/intro/tutorial03/ --> Use the template system
+setup_test_environment() run on the existing database. Also creates a response.context as it won't be present
+- TIME_ZONE in settings.py should be set correctly to expect correct test results
+- Django testcase has its own client
+- __lte means less than equal to, could be applied on datetime field
+- The database is reset for each test method
+- Model should have its own test class "ModelNameModelTests"
+- Likewise each view should have its own test case "ModelNameViewNameViewTests"
+
+
+Status start from
+https://docs.djangoproject.com/en/5.0/intro/tutorial06/
