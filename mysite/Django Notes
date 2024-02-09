@@ -121,6 +121,11 @@ setup_test_environment() run on the existing database. Also creates a response.c
 - Model should have its own test class "ModelNameModelTests"
 - Likewise each view should have its own test case "ModelNameViewNameViewTests"
 
+# Installing django packages
+python -m pip install django-debug-toolbar
 
 Status start from
 https://docs.djangoproject.com/en/5.0/intro/tutorial06/
+
+# Integrating react with django
+https://medium.com/@devsumitg/how-to-connect-reactjs-django-framework-c5ba268cb8be
